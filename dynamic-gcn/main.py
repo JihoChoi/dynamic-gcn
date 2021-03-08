@@ -246,7 +246,8 @@ def train_GCN(tree_dict, x_train, x_val, x_test, counters):
         )
 
         early_stopping(
-            validation_losses[-1], model, 'BiGCN', dataset_name, validation_eval_result)
+            validation_losses[-1], model, 'BiGCN', dataset_name, validation_eval_result
+        )
         if early_stopping.early_stop:
             print("Early Stopping")
             validation_eval_result = early_stopping.eval_result
@@ -262,10 +263,12 @@ def train_GCN(tree_dict, x_train, x_val, x_test, counters):
     # --------------------
 
     with torch.cuda.device(device):
-        torch.cuda.empty_cache()  # TODO: CHECK
+        torch.cuda.empty_cache()
+
     test_dataset = load_snapshot_dataset(dataset_name, tree_dict, x_test, "test")
     test_loader = DataLoader(
-        test_dataset, batch_size=batch_size, shuffle=True, num_workers=5)
+        test_dataset, batch_size=batch_size, shuffle=True, num_workers=5
+    )
 
     batch_test_losses = []  # epoch
     batch_test_accuracies = []
@@ -337,16 +340,11 @@ def main():
         fold3_x_train, fold3_x_val, fold3_x_test = folds[0][3], folds[1][3], folds[2][3]
         fold4_x_train, fold4_x_val, fold4_x_test = folds[0][4], folds[1][4], folds[2][4]
 
-        _, _, accs_f0, F1_f0 = train_GCN(
-            tree_dict, fold0_x_train, fold0_x_val, fold0_x_test, counters)  # fold 0
-        _, _, accs_f1, F1_f1 = train_GCN(
-            tree_dict, fold1_x_train, fold1_x_val, fold1_x_test, counters)  # fold 1
-        _, _, accs_f2, F1_f2 = train_GCN(
-            tree_dict, fold2_x_train, fold2_x_val, fold2_x_test, counters)  # fold 2
-        _, _, accs_f3, F1_f3 = train_GCN(
-            tree_dict, fold3_x_train, fold3_x_val, fold3_x_test, counters)  # fold 3
-        _, _, accs_f4, F1_f4 = train_GCN(
-            tree_dict, fold4_x_train, fold4_x_val, fold4_x_test, counters)  # fold 4
+        _, _, accs_f0, F1_f0 = train_GCN(tree_dict, fold0_x_train, fold0_x_val, fold0_x_test, counters)  # fold 0
+        _, _, accs_f1, F1_f1 = train_GCN(tree_dict, fold1_x_train, fold1_x_val, fold1_x_test, counters)  # fold 1
+        _, _, accs_f2, F1_f2 = train_GCN(tree_dict, fold2_x_train, fold2_x_val, fold2_x_test, counters)  # fold 2
+        _, _, accs_f3, F1_f3 = train_GCN(tree_dict, fold3_x_train, fold3_x_val, fold3_x_test, counters)  # fold 3
+        _, _, accs_f4, F1_f4 = train_GCN(tree_dict, fold4_x_train, fold4_x_val, fold4_x_test, counters)  # fold 4
 
         print("Test Accuracies (k-folds):", accs_f0, accs_f1, accs_f2, accs_f3, accs_f4)
         test_accs.append((accs_f0 + accs_f1 + accs_f2 + accs_f3 + accs_f4) / 5)
