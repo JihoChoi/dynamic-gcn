@@ -48,3 +48,18 @@ python ./dynamic-gcn/main.py --model GCN --learning-sequence additive \
 
 python ./dynamic-gcn/main.py --model GCN --learning-sequence dot_product \
     --dataset-name Twitter16 --dataset-type temporal --snapshot-num 5 --cuda cuda:1
+
+
+
+
+
+# snapshot count: 4
+
+python ./dynamic-gcn/preparation/preprocess_dataset.py Twitter16 4
+python ./dynamic-gcn/preparation/prepare_snapshots.py Twitter16 sequential 4
+python ./dynamic-gcn/preparation/prepare_snapshots.py Twitter16 temporal 4
+
+python ./dynamic-gcn/main.py --model GCN --learning-sequence additive \
+    --dataset-name Twitter16 --dataset-type sequential --snapshot-num 4 \
+    --cuda cuda:1
+

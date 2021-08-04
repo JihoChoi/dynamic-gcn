@@ -1,16 +1,18 @@
 # Dynamic GCN for Rumor Detection
 
-Dynamic Graph Convolutional Networks with Attention Mechanism for Rumor Detection on Social Media
 
+This repository is a PyTorch implementation of "Dynamic Graph Convolutional Networks with Attention Mechanism for Rumor Detection on Social Media" which is submitted to PLOS ONE.
 
+<!--
 ### Overview
-.
+![model_overview](./assets/model_overview.png)
+-->
+
 
 ### Project Structure
 
 ``` markdown
 ├── README.md
-├── prepare_dataset.sh
 ├── resources
 │   ├── Twitter15_label_All.txt
 │   ├── Twitter16_label_All.txt
@@ -19,7 +21,6 @@ Dynamic Graph Convolutional Networks with Attention Mechanism for Rumor Detectio
 │   ├── prepare_dataset.sh
 │   └── run.sh
 ├── dynamic-gcn (src)
-│   ├── utils.py
 │   ├── preparation
 │   │   ├── preprocess_dataset.py
 │   │   └── prepare_snapshots.py
@@ -27,10 +28,10 @@ Dynamic Graph Convolutional Networks with Attention Mechanism for Rumor Detectio
 │   │   ├── random_folds.py
 │   │   ├── early_stopping.py
 │   │   └── evaluation.py
+│   ├── project_setting.py
 │   ├── main.py
 │   ├── dataset.py
 │   ├── models.py
-│   ├── project_setting.py
 │   └── utils.py
 └── baselines
     ├── GRU
@@ -78,6 +79,12 @@ $ source ./env/bin/activate
 (env) pip install torch-geometric
 ```
 
+### Datasets
+
+The datasets used in the experiments were based on the three publicly available datasets released by Ma et al. (2017).
+Detailed information of the datasets can be found in the [LINK](https://github.com/majingCUHK/Rumor_RvNN).
+
+
 
 ### Usage
 ``` bash
@@ -87,7 +94,12 @@ $ source ./env/bin/activate
 # prepare dataset
 (env) sh ./scripts/prepare_dataset.sh
 
-python ./dynamic-gcn/main.py --model GCN --learning-sequence additive \
+# preprocess
+(env) python ./dynamic-gcn/preparation/preprocess_dataset.py Twitter16 3
+(env) python ./dynamic-gcn/preparation/prepare_snapshots.py Twitter16 sequential 3
+
+# model
+(env) python ./dynamic-gcn/main.py --model GCN --learning-sequence additive \
     --dataset-name Twitter16 --dataset-type sequential --snapshot-num 3 \
     --cuda cuda:1
 
@@ -97,4 +109,5 @@ python ./dynamic-gcn/main.py --model GCN --learning-sequence additive \
 
 ### References
 - [PyTorch Geometric](https://github.com/rusty1s/pytorch_geometric)
-
+- [Rumor Detection - RvNN](https://github.com/majingCUHK/Rumor_RvNN)
+- [Rumor Detection - BiGCN](https://github.com/TianBian95/BiGCN)

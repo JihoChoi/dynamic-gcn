@@ -1,4 +1,7 @@
 
+# UPDATED: 2021.07.00
+
+
 # Temporal / Config
 .vscode/
 temp/
@@ -7,11 +10,17 @@ tmp/
 # Data
 data/
 results/
+images/
+figures/
 resources/Weibo/weibotree.txt
 
 # env
 env-nightly/
 
+# private files
+./baselines/
+./dynamic-gcn/preparation/statistics.py
+./dynamic-gcn/visualization/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
