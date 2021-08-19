@@ -1,12 +1,22 @@
 # Dynamic GCN for Rumor Detection
 
 
-This repository is a PyTorch implementation of "Dynamic Graph Convolutional Networks with Attention Mechanism for Rumor Detection on Social Media" which is submitted to PLOS ONE.
+<!-- This repository is a PyTorch implementation of "Dynamic Graph Convolutional Networks with Attention Mechanism for Rumor Detection on Social Media" which is submitted to PLOS ONE. -->
 
-<!--
+This repository is a PyTorch implementation of "Dynamic Graph Convolutional Networks with Attention Mechanism for Rumor Detection on Social Media" which is published in [PLOS ONE](https://doi.org/10.1371/journal.pone.0256039).
+
+* https://doi.org/10.1371/journal.pone.0256039
+
+
 ### Overview
-![model_overview](./assets/model_overview.png)
--->
+
+| Snapshot Generation | Dynamic GCN Overview |
+| :---: | :---: |
+| ![snapshot_generation](./assets/snapshot_generation.png) | ![model_overview](./assets/model_overview.png)  |
+
+<!-- | snapshot generation | model overview |
+| :---: | :---: |
+| <img src="./assets/snapshot_generation.png" alt="snapshot_generation" width="250" /> | <img src="./assets/model_overview.png" alt="model_overview" width="250" />  | -->
 
 
 ### Project Structure
@@ -34,10 +44,7 @@ This repository is a PyTorch implementation of "Dynamic Graph Convolutional Netw
 │   ├── models.py
 │   └── utils.py
 └── baselines
-    ├── GRU
-    ├── RvNN
-    ├── BiGCN
-    └── ...
+    └── GRU, RvNN, BiGCN, ...
 
 ```
 
@@ -79,11 +86,11 @@ $ source ./env/bin/activate
 (env) pip install torch-geometric
 ```
 
+
 ### Datasets
 
 The datasets used in the experiments were based on the three publicly available datasets released by Ma et al. (2017).
-Detailed information of the datasets can be found in the [LINK](https://github.com/majingCUHK/Rumor_RvNN).
-
+Detailed information on the datasets can be found in the [(LINK)](https://github.com/majingCUHK/Rumor_RvNN).
 
 
 ### Usage
@@ -106,8 +113,23 @@ Detailed information of the datasets can be found in the [LINK](https://github.c
 ```
 
 
+### Citation
 
-### References
+Dynamic Graph Convolutional Networks with Attention Mechanism for Rumor Detection on Social Media (PLOS ONE 2021)
+
+```
+@inproceedings{Choi2021,
+  author    = {Jiho Choi, Taewook Ko, Younhyuk Choi, Hyungho Byun, Chong-kwon Kim},
+  title     = {Dynamic Graph Convolutional Networks with Attention Mechanism for Rumor Detection on Social Media},
+  booktitle = {PLOS ONE},
+  URL       = {https://doi.org/10.1371/journal.pone.0256039},
+  year      = {2021},
+  month     = {08},
+  volume    = {16},
+}
+```
+
+### Acknowledgement
 - [PyTorch Geometric](https://github.com/rusty1s/pytorch_geometric)
 - [Rumor Detection - RvNN](https://github.com/majingCUHK/Rumor_RvNN)
 - [Rumor Detection - BiGCN](https://github.com/TianBian95/BiGCN)
